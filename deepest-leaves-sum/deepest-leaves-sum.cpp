@@ -9,6 +9,41 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// USING DFS
+class Solution {
+public:
+    int sum = 0;
+    int maxDepth = 0;
+    int deepestLeavesSum(TreeNode* root) {
+       
+        findSum(root,1);
+        return sum;
+    }
+    
+    void findSum(TreeNode* root, int curr)
+    {
+        if(root!=NULL)
+        {
+            if(curr>maxDepth)
+            {
+                sum = 0;
+                maxDepth = curr;
+            }
+            if(curr == maxDepth)
+            {
+                sum += root->val;
+            }
+            
+        findSum(root->left,curr+1);
+        findSum(root->right,curr+1);
+        }
+    }
+};
+
+
+/*
+// USING BFS.
 class Solution {
 public:
     int deepestLeavesSum(TreeNode* root) {
@@ -46,3 +81,5 @@ public:
     return last_sum;
     }
 };
+
+*/
